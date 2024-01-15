@@ -3,10 +3,14 @@
     <link rel="stylesheet" href="./src/styles.css">
   </head>
   <body>
-    <h1></h1>
+    <h1 id="title"> Whack-a-Mole!!! </h1>
     <div>
+      <!-- Start Button and song-->
       <div>
+        <button id="startButton">Start Game</button>
+        <button onclick="play();">play song</button>
         <h2>Click start to play!</h2>
+        <div>You have <span id="timerDisplay">0</span> seconds left!</div>
       </div>
       <div>
         <h2>score: <span id="score">0</span></h2>
@@ -15,6 +19,7 @@
           <h2><span id="timer">0</span> seconds left.</h2>
       </div>
     </div>
+     <!-- Hole and mole code -->
     <div class="grid">
       <div id="hole0" class="hole">
         <div id="mole0" class="mole"></div>
@@ -23,7 +28,33 @@
         <div id="mole1" class="mole"></div>
       </div>
       <!--TODO: Add the missing holes and moles. -->
+      <div id="hole2" class="hole">
+        <div id="mole2" class="mole"></div>
+      </div>
+      <div id="hole3" class="hole">
+        <div id="mole3" class="mole"></div>
+      </div>
+      <div id="hole4" class="hole">
+        <div id="mole4" class="mole"></div>
+      </div>
+      <div id="hole5" class="hole">
+        <div id="mole5" class="mole"></div>
+      </div>
+      <div id="hole6" class="hole">
+        <div id="mole6" class="mole"></div>
+      </div>
+      <div id="hole7" class="hole">
+        <div id="mole7" class="mole"></div>
+      </div>
+      <div id="hole8" class="hole">
+        <div id="mole8" class="mole"></div>
+      </div>
+
+      <div class="mole">click here to trigger the click event on mole 1</div>
+    <div class="mole">click here to trigger the click event on mole 2</div>
+
     </div>
+
     <script src="./src/index.js"></script>
   </body>
 </html>
