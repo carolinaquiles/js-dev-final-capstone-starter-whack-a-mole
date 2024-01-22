@@ -2,11 +2,24 @@ const holes = document.querySelectorAll('.hole');
 const moles = document.querySelectorAll('.mole');
 const startButton = document.querySelector('#startButton');
 // TODO: Add the missing query selectors:
-const scoreElement = document.querySelector('#score'); // Use querySelector() to get the score element
+const score = document.querySelector('#score'); // Use querySelector() to get the score element
 const timerDisplay = document.querySelector('#timerDisplay'); // use querySelector() to get the timer element.
+const cursor = document.querySelector('.cursor')
+window.addEventListener('mousemove', e => {
+  cursor.style.top = e.pageY + 'px'
+  cursor.style.left = e.pageX + 'px'
+})
+
+window.addEventListener('mousedown', () => {
+  cursor.classList.add('active')
+})
+
+window.addEventListener('mouseup', () => {
+  cursor.classList.remove('active')
+})
 
 let time =0;
-let timer =0;
+let timer;
 let lastHole;
 let points = 0;
 let difficulty = "hard";
@@ -16,7 +29,7 @@ let timeoutId;
 const titleElement = document.querySelector('#title');
 
 //added to correct
-const result = startGame(); // This might be where 
+//const result = startGame();  This might be where 
 /**
  * Generates a random integer within a range.
  *
@@ -27,7 +40,6 @@ const result = startGame(); // This might be where
  *
  */
 function randomInteger(min, max) {
-  // return Math.floor(Math.random() * (max - min + 1)) + min;
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
@@ -196,8 +208,8 @@ function updateScore() {
   points += 1;
   
   // Score is the element where it will display the score
-  //const scoreElement = document.getElementById("score"); // Replace "score" with the actual ID of your score element
-  scoreElement.textContent = points;
+  //const scoreElement = document.getElementById("score");
+  score.textContent = points;
   return points;
 }
 
@@ -210,14 +222,10 @@ function updateScore() {
 */
 function clearScore() {
   // TODO: Write your code here
-  // points = 0;
-  // score.textContent = points;
-    points = 0;
-  
-    // This will display the score
-    const scoreElement = document.getElementById("score"); // Replace "score" with the actual ID of your score element
-    scoreElement.textContent = points;
-  
+  points = 0;
+  console.log("clearScore");
+  // This will display the score
+  score.textContent = points;
   return points;
 }
 
@@ -242,9 +250,9 @@ function updateTimer() {
 * the updateTimer function get called. This function is already implemented
 *
 */
+
 function startTimer() {
   // TODO: Write your code here
-  // timer = setInterval(updateTimer, 1000);
   timer = setInterval(updateTimer, 1000);
   return timer;
 }
@@ -259,8 +267,7 @@ function startTimer() {
 */
 function whack(event) {
   // TODO: Write your code here.
-  // call updateScore()
-  console.log("whack!")
+  console.log("whack!");
   updateScore();
   return points;
 }
@@ -283,6 +290,7 @@ function setEventListeners(){
 * that a player has to click on the sprites.
 *
 */
+
 function setDuration(duration) {
   time = duration;
   return time;
@@ -294,8 +302,9 @@ function setDuration(duration) {
 * timer using clearInterval. Returns "game stopped".
 *
 */
+
 function stopGame(){
-  // stopAudio(song);  //optional
+   stopAudio(song);  //optional
   clearInterval(timer);
   return "game stopped";
 }
@@ -306,12 +315,24 @@ function stopGame(){
 * is clicked.
 *
 */
-function startGame(){
-  //setDuration(10);
-  //showUp();
+
+function startGame(difficulty){
+  
   setDuration(10);
+
+  // Set the speed based on the difficulty
+  if (difficulty === 'easy') {
+    setDuration(15); // Adjust the duration for easy difficulty
+  } else if (difficulty === 'normal') {
+    setDuration(10); // Adjust the duration for normal difficulty
+  } else if (difficulty === 'hard') {
+    setDuration(5); // Adjust the duration for hard difficulty
+  }
+
   showUp();
   setEventListeners();
+  clearScore();
+  startTimer();
   return "game started";
 }
 
