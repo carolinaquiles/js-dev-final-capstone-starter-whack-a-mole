@@ -6,17 +6,21 @@
     <link rel="stylesheet" href="./src/styles.css">
   </head>
   <body>
-    <h1 id="title"> Whack-a-Mole!!!</h1>
+    <h1 id="title"> Whack-A-Mole!!!</h1>
     <div>
-      <!-- Start Button and song-->
+      <!-- Start Buttons and song-->
       <div style="text-align: center;">
         <button id ="startButton" type="button" class="startButton" onclick="startGame('easy')">Easy</button>
         <button id ="normalButton" type="button" class="startButton" onclick="startGame('normal')">Normal</button>
         <button id="hardButton" type="button" class="startButton" onclick="startGame('hard')">Hard</button>
-        <button onclick="play();">Play Song</button>
-        <div class="cursor">mallet</div>
+        <button class="startButton" onclick="play();">Play Song</button>
         <h2>Click start to play!</h2> 
       </div>
+      <!-- Mallet img on cursor -->
+      <div class="cursor">
+        <img src="assets/mallet.png">
+      </div>
+      <!-- Score and time code-->
       <div>
         <h2>score: <span id="score">0</span></h2>
       </div>

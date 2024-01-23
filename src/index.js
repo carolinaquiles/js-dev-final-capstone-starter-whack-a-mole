@@ -5,6 +5,8 @@ const startButton = document.querySelector('#startButton');
 const score = document.querySelector('#score'); // Use querySelector() to get the score element
 const timerDisplay = document.querySelector('#timerDisplay'); // use querySelector() to get the timer element.
 const cursor = document.querySelector('.cursor')
+
+// Mallet movement
 window.addEventListener('mousemove', e => {
   cursor.style.top = e.pageY + 'px'
   cursor.style.left = e.pageX + 'px'
@@ -28,7 +30,7 @@ let timeoutId;
 // Title element of ID of "title"
 const titleElement = document.querySelector('#title');
 
-//added to correct
+
 //const result = startGame();  This might be where 
 /**
  * Generates a random integer within a range.
@@ -88,6 +90,8 @@ function setDelay(difficulty) {
  * const holes = document.querySelectorAll('.hole');
  * chooseHole(holes) //> returns one of the 9 holes that you defined
  */
+
+
 function chooseHole(holes) {
   // TODO: Write your code here.
   // Generate a random integer from 0 to 8 and assign it to an index variable.
@@ -109,6 +113,7 @@ function chooseHole(holes) {
   }
 
 }
+
 
 /**
 *
@@ -153,6 +158,7 @@ if (time > 0) {
 * to call `showAndHide(hole, delay)`.
 *
 */
+// This function should show and hide a mole in a specific hole
 function showUp() {
   let delay = setDelay("easy"); // TODO: Update so that it uses setDelay()
   const hole = chooseHole(holes);  // TODO: Update so that it use chooseHole()
@@ -317,7 +323,7 @@ function stopGame(){
 */
 
 function startGame(difficulty){
-  
+  console.log("Start Game Called");
   setDuration(10);
 
   // Set the speed based on the difficulty
@@ -329,6 +335,9 @@ function startGame(difficulty){
     setDuration(5); // Adjust the duration for hard difficulty
   }
 
+  console.log("Before showUp");
+  console.log("After showUp");
+
   showUp();
   setEventListeners();
   clearScore();
@@ -336,11 +345,11 @@ function startGame(difficulty){
   return "game started";
 }
 
-startButton.addEventListener("click", startGame);
 
 //sound FX and music
 const audioHit = new Audio("https://github.com/gabrielsanchez/erddiagram/blob/main/hit.mp3?raw=true");
 const song = new Audio("https://github.com/gabrielsanchez/erddiagram/blob/main/molesong.mp3?raw=true");
+
 
 function playAudio(audioObject) {
   audioObject.play();
