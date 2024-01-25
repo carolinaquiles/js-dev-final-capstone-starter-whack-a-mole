@@ -302,6 +302,8 @@ function whack(event) {
   // TODO: Write your code here.
   console.log("whack!");
   updateScore();
+   // Play the audioHit sound when a mole is whacked
+   playAudio(audioHit);
   return points;
 }
 
@@ -371,10 +373,13 @@ function startGame(difficulty){
     setDuration(5); // Adjust the duration for hard difficulty
   }
 
+  // Play the audio song when the game starts
+  play();
+  
   console.log("Before showUp");
   console.log("After showUp");
 
-  showUp(); 
+  // showUp(); 
   setEventListeners();
   clearScore();
   startTimer();
