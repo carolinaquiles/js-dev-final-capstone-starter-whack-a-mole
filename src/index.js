@@ -161,9 +161,16 @@ if (time > 0) {
 */
 // This function should show and hide a mole in a specific hole
 function showUp() {
+  // Check if the game is still in progress
+  if (time > 0) {
   let delay = setDelay("easy"); // TODO: Update so that it uses setDelay()
   const hole = chooseHole(holes);  // TODO: Update so that it use chooseHole()
-  return showAndHide(hole, delay);
+  showAndHide(hole, delay);
+  // Schedule the next mole appearance after the current delay
+  setTimeout(() => {
+    showUp();
+  }, delay);
+ }
 }
 
 /**
