@@ -5,6 +5,7 @@ const startButton = document.querySelector('#startButton');
 const score = document.querySelector('#score'); // Use querySelector() to get the score element
 const timerDisplay = document.querySelector('#timerDisplay'); // use querySelector() to get the timer element.
 const cursor = document.querySelector('.cursor')
+let intervalId;
 
 // Mallet movement
 window.addEventListener('mousemove', e => {
@@ -257,10 +258,29 @@ function updateTimer() {
 *
 */
 
+// Clear any existing intervals
+// clearInterval(initialIntervalId);
+
+let gameStarted = false; // Added this line to define gameStarted variable
+// Start the game loop only when the game actually starts
+intervalId = setInterval(() => {
+  // Only show moles if the game has started
+  if (gameStarted) {
+    showUp();
+  }
+}, 1500);
+
 function startTimer() {
   // TODO: Write your code here
-  timer = setInterval(updateTimer, 1000);
-  return timer;
+  timer = setInterval(() => {
+    updateTimer();
+    showUp(); // Call showUp within the timer interval
+  }, 1000);
+  // timer = setInterval(updateTimer, 1000);
+  // return timer;
+  
+  // Return an object containing the intervalId and the timer
+   return { intervalId, timer };
 }
 
 /**
@@ -312,7 +332,16 @@ function setDuration(duration) {
 function stopGame(){
    stopAudio(song);  //optional
   clearInterval(timer);
+  clearInterval(intervalId);
+  stopTimer();  // Stop both timers
+  gameStarted = false;
   return "game stopped";
+}
+
+// This function stops the timer and clears the mole movement interval.
+function stopTimer() {
+  clearInterval(timer);
+  clearInterval(intervalId);
 }
 
 /**
@@ -338,7 +367,7 @@ function startGame(difficulty){
   console.log("Before showUp");
   console.log("After showUp");
 
-  showUp();
+  showUp(); 
   setEventListeners();
   clearScore();
   startTimer();
