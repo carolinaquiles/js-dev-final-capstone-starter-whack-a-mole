@@ -1,6 +1,8 @@
 html {
   /*background: url('./assets/background.png') no-repeat center center fixed;*/
-  background: url('https://github.com/Thinkful-Ed/js-dev-final-capstone-starter/blob/main/assets/background.png?raw=true') no-repeat center center fixed;
+  /* background: url('https://github.com/Thinkful-Ed/js-dev-final-capstone-starter/blob/main/assets/background.png?raw=true') no-repeat center center fixed; */
+  /* updated background image */
+  background: url('../../assets/background space.png'); 
   box-sizing: border-box;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -84,6 +86,7 @@ box-shadow: 0 4px 12px rgba(0, 0, 0, 0);
   position: relative;
 }
 
+/* Moles displayed to show up */
 .hole:after {
   display: block;
   /*background: url("./assets/hole.png") bottom center no-repeat;*/
@@ -97,7 +100,7 @@ box-shadow: 0 4px 12px rgba(0, 0, 0, 0);
   z-index: 2;
   pointer-events:none;
 }
-/* Moles displayed to show up */
+
 .mole {
   /*background:url('./assets/mole.png') bottom center no-repeat;*/
   background:url('https://github.com/Thinkful-Ed/js-dev-final-capstone-starter/blob/main/assets/mole.png?raw=true') bottom center no-repeat;
