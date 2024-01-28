@@ -159,19 +159,32 @@ if (time > 0) {
 * to call `showAndHide(hole, delay)`.
 *
 */
+
+let moleVisible = false; // Global variable to track mole visibility
+
 // This function should show and hide a mole in a specific hole
 function showUp() {
   // Check if the game is still in progress
-  if (time > 0) {
-  let delay = setDelay("easy"); // TODO: Update so that it uses setDelay()
+  if (time > 0 && !moleVisible) {
+    moleVisible = true; // Set mole as visible
+    let delay = setDelay("easy"); // TODO: Update so that it uses setDelay()
   const hole = chooseHole(holes);  // TODO: Update so that it use chooseHole()
-  showAndHide(hole, delay);
-  // Schedule the next mole appearance after the current delay
-  setTimeout(() => {
-    showUp();
-  }, delay);
- }
+  // Show the mole
+  toggleVisibility(hole, true);
+
+  // Schedule hiding the mole after the current delay
+    setTimeout(() => {
+      // Hide the mole
+      toggleVisibility(hole, false);
+      moleVisible = false; // Set mole as not visible
+      // Schedule the next mole appearance after the hiding delay
+      setTimeout(() => {
+        showUp();
+      }, delay);
+    }, delay);
+  }
 }
+
 
 /**
 *
@@ -199,13 +212,19 @@ function showAndHide(hole, delay){
 *
 */
 
-function toggleVisibility(hole){
+function toggleVisibility(hole, show){
   // TODO: add hole.classList.toggle so that it adds or removes the 'show' class.
+  // Add or remove the 'show' class based on the show parameter
   if (hole) {
-  hole.classList.toggle('show');
-  return hole;
+    if (show) {
+      hole.classList.add('show');
+    } else {
+      hole.classList.remove('show');
+    }
+    return hole;
   }
 }
+
 /**
 *
 * This function increments the points global variable and updates the scoreboard.
